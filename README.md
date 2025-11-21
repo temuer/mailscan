@@ -1,17 +1,8 @@
 # Mail Scanner
 
-1. Configure the mail client inside `.fetchmailrc`. For example:
+1. Configure the mail client inside `.fetchmailrc`.
 
-    ```console
-    poll xmail.mwn.de proto IMAP
-        port 993
-        is root here
-        ssl
-        keep
-        mda "/usr/bin/procmail -f %F -d %T"
-    ```
-
-    You should adjust the server, the protocol, and the port. Do not change the last line.
+    You can adjust the server, the protocol, and the port. Do not change the last line.
 
     You also need `.procmailrc`. You should not change anything in this file.
 
