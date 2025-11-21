@@ -1,0 +1,18 @@
+# Define environment variables
+MAILDIR=/var/mail/ # Or wherever your local mail is delivered (e.g., /var/mail/$USER)
+ATTACH_DIR=$HOME/attachments_mail
+LOGFILE=$HOME/.procmail.log
+VERBOSE=yes
+
+# 
+# Recipe to extract attachments using munpack
+# The 'c' flag means 'carbon copy' - the message is cloned. 
+# One copy is piped to munpack, and the original continues for normal delivery.
+# 
+:0c
+* ^Content-Type:.*multipart/mixed
+| munpack -q -C $ATTACH_DIR
+
+# Fallback/Default delivery (sends the original email to your local mailbox)
+:0:
+$MAILDIR/
